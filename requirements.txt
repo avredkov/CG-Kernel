@@ -1,0 +1,12 @@
+# Runtime dependencies for CGKernel
+# Note: Install a CUDA-enabled torch build if you plan to use GPU acceleration.
+
+numpy>=1.23,<3
+pandas>=1.5,<3
+# CPU build by default; replace with appropriate CUDA build from pytorch.org if needed
+torch>=2.0,<3
+scikit-learn>=1.1,<2
+pydantic>=1.10,<3
+matplotlib>=3.6,<4
+plotly>=5.17,<6
+pillow>=10,<11

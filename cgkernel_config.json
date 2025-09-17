@@ -1,0 +1,141 @@
+{
+  "_comments": {
+    "description": "CGKernel Configuration File - Defines data processing, model training, and prediction parameters for crystal growth kernel simulations",
+    "version": "1.0",
+    "last_updated": "2025"
+  },
+  
+  "_data_processing": {
+    "description": "Data processing configuration for input features",
+    "numeric_columns": "Continuous numerical features that require scaling/normalization",
+    "integer_columns": "Discrete integer features (no scaling needed)",
+    "log_columns": "Features that should be log-transformed before processing",
+    "categorical_column": "Categorical feature requiring one-hot encoding",
+    "defaults": "Default values for missing categorical data"
+  },
+  "numeric_columns": ["Cs", "Pes", "Pbias", "T", "Pd"],
+  "integer_columns": ["M"],
+  "log_columns": ["Cs", "Pd"],
+  "categorical_column": "Nnucl",
+  "defaults": {
+    "Nnucl": 0
+  },
+  "_features_description": {
+    "description": "Detailed feature definitions for crystal growth simulation parameters",
+    "Cs": "Surface concentration - fraction of surface sites occupied by adatoms",
+    "Pes": "Schwoebel barrier - energy barrier for adatom hopping over step edges",
+    "Pbias": "Drift of adatoms - bias in adatom diffusion direction",
+    "T": "Transparency of steps - probability of adatom transmission through steps",
+    "Pd": "Desorption probability - rate of adatom desorption from surface",
+    "M": "Void number - number of pits/voids in the surface",
+    "Nnucl": "Nucleation regime - categorical variable defining growth mechanism"
+  },
+  "features": [
+    {"name": "Cs", "dtype": "float", "distribution": "log", "min": 0.001, "max": 0.5, "alias": ["Coverage", "coverage", "cs"]},
+    {"name": "Pes", "dtype": "float", "distribution": "linear", "min": 0.000001, "max": 1, "alias": ["Es", "es", "ES", "pes"]},
+    {"name": "Pbias", "dtype": "float", "distribution": "linear", "min": -0.3, "max": 0.3, "alias": ["Bias X", "bias_x", "bias", "pbias"]},
+    {"name": "T", "dtype": "float", "distribution": "linear", "min": 0.0, "max": 1.0, "alias": ["Pg", "pg", "t"]},
+    {"name": "Pd", "dtype": "float", "distribution": "log", "min": 0.000001, "max": 0.01, "alias": ["Desorption", "desorption", "pd"]},
+    {"name": "M", "dtype": "int", "distribution": "linear", "min": 0, "max": 14, "alias": ["N pits", "n_pits", "npits", "m"]},
+    {"name": "Nnucl", "dtype": "categorical", "distribution": "linear", "min": 0, "max": 2, "alias": ["Regime", "regime", "nnucl"]}
+  ],
+  "_display_config": {
+    "description": "User interface display configuration for labels and categories",
+    "display_labels": "Human-readable labels for GUI display",
+    "display_categories": "Categorical value descriptions for user understanding",
+    "display_property_labels": "Labels for predicted surface properties",
+    "display_classifier_labels": "Labels for classification outputs"
+  },
+  "display_labels": {
+    "Cs": "Surface concentration (Cs)",
+    "Pes": "Schwoebel barrier (Pes)",
+    "Pbias": "Drift of adatoms (Pbias)",
+    "T": "Transparency of steps (T)",
+    "Pd": "Desorption probability (Pd)",
+    "M": "Void number (M)",
+    "Nnucl": "Nucleation regime (Nnucl)"
+  },
+  "display_categories": {
+    "Nnucl": {
+      "0": "Kink incorporation only",
+      "1": "Kinks + 1D nucleation",
+      "2": "Kinks + 1D + 2D Nucleation"
+    }
+  },
+  "display_property_labels": {
+    "growth_rate": "Growth rate (R)",
+    "rms": "RMS Roughness(Ssq)",
+    "ra": "Average Roughness (Sa)",
+    "skewness": "Skewness (Ssk)",
+    "kurtosis": "Kurtosis (Sku)",
+    "peak_to_valley": "Peak to valley (Sz)"
+  },
+  "display_classifier_labels": {
+    "morphology": "Morphology",
+    "stability": "Stability"
+  },
+  "_model_mapping": {
+    "description": "Mapping configuration for model training and prediction",
+    "training_feature_map": "Maps internal feature names to training dataset column names",
+    "regressor_keys": "Keys for regression model outputs (surface properties)",
+    "classifier_keys": "Keys for classification model outputs (morphology/stability)",
+    "models": "File paths for trained PyTorch models and preprocessors"
+  },
+  "training_feature_map": {
+    "Cs": "Coverage",
+    "Pes": "Es",
+    "Pbias": "Bias X",
+    "T": "Pg",
+    "Pd": "Desorption",
+    "M": "N pits",
+    "Nnucl": "Regime"
+  },
+  "regressor_keys": {
+    "growth_rate": "growth_rate",
+    "rms": "rms",
+    "ra": "ra",
+    "skewness": "skewness",
+    "kurtosis": "kurtosis",
+    "peak_to_valley": "peak_to_valley"
+  },
+  "classifier_keys": {
+    "morphology": "morphology",
+    "stability": "stability"
+  },
+  "_model_files": {
+    "description": "Trained model file paths and preprocessors",
+    "regressors": "Regression models for predicting surface properties (growth rate, roughness, etc.)",
+    "classifiers": "Classification models for morphology and stability prediction",
+    "pt_files": "PyTorch model files (.pt) containing trained neural network weights",
+    "pkl_files": "Preprocessor files (.pkl) containing data scaling and transformation parameters"
+  },
+  "models": {
+    "regressors": {
+      "growth_rate": {"pt": "mlp_growth_rate.pt", "pkl": "mlp_growth_rate.preprocessor.pkl"},
+      "rms": {"pt": "mlp_rms.pt", "pkl": "mlp_rms.preprocessor.pkl"},
+      "ra": {"pt": "mlp_ra.pt", "pkl": "mlp_ra.preprocessor.pkl"},
+      "skewness": {"pt": "mlp_skewness.pt", "pkl": "mlp_skewness.preprocessor.pkl"},
+      "kurtosis": {"pt": "mlp_kurtosis.pt", "pkl": "mlp_kurtosis.preprocessor.pkl"},
+      "peak_to_valley": {"pt": "mlp_peak_to_valley.pt", "pkl": "mlp_peak_to_valley.preprocessor.pkl"}
+    },
+    "classifiers": {
+      "morphology": {"pt": "mlp_morphology.pt", "pkl": "mlp_morphology.preprocessor.pkl"},
+      "stability": {"pt": "mlp_stability_v2.pt", "pkl": "mlp_stability_v2.preprocessor.pkl"}
+    }
+  },
+  "_file_paths": {
+    "description": "File paths for datasets, models, and resources",
+    "ranges_dataset_csv": "Training dataset with 299k samples for model training and validation",
+    "morphology_package_dir": "Directory containing morphology prediction resources",
+    "generator": "Generative model for creating synthetic surface morphologies",
+    "colormap_png": "Color mapping file for visualizing surface morphologies"
+  },
+  "ranges_dataset_csv": "data/all_data_299k.csv",
+  "morphology_package_dir": "Morphology predictor",
+  "generator": {
+    "ts": "./models/generator_256.ts"
+  },
+  "colormap_png": "./morphologies/Colormap.png"
+}
+
+
