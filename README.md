@@ -125,6 +125,7 @@ logging.basicConfig(level=logging.INFO)
 ```
 
 ## Troubleshooting
+- If the plots are empty in Google Colab runtime: ensure the Plotly version 5.10 is installed (launch the first cell in the notebook), as version 5.24 (currently default) is not supported.
 - "Parameter set is out of trained range": ensure all numeric values are within the min/max listed above; for `Cs` and `Pd` values must be strictly > 0.
 - Missing required columns: pass all features (`Cs`, `Pes`, `Pbias`, `T`, `Pd`, `M`, `Nnucl`). Aliases are accepted.
 - Model files not found: confirm the `models/` directory contains the `*.pt` and matching `*.preprocessor.pkl` files listed in `cgkernel_config.json`.
