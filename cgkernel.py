@@ -191,6 +191,7 @@ class CGKernel:
         print("Use predict_property(name, inputs) for: ", ", ".join(self.regressors.keys()))
         print("Use predict_morphology_class(inputs) for morphology cluster classification.")
         print("Use predict_stability(inputs) for stability classification.")
+        print("Use generate_morphology(inputs) for generation of surface morphology.\n")
         print("Inputs can be a dict for one sample or a list/DataFrame for batch.")
         print("Call describe() to see expected features and ranges.")
 
