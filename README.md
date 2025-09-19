@@ -14,7 +14,7 @@ Repository Contents:
 - Growth Type Classification: Classifies possible types of growth and maps them to growth condition parameters.
 - Multidimensional Mapping: Visualizes stability zones, highlighting parameter regions where specific growth types occur.
 
-This repository presents a demonstration of the kernel on a base simplistic atomistic model, specifically tailored for epitaxial growth of cubic a crystal growth from its own vapor. The underlying model, including key growth parameters like adatom concentration, desorption probability, step transparency and other factors which govern the growth dynamics, is described in the paper.
+This repository presents a demonstration of the kernel on a base simplistic atomistic model, specifically tailored for epitaxial growth of cubic a crystal growth from its own vapor. The underlying model, including 7 key growth parameters like adatom concentration, desorption probability, step transparency and other factors which govern the growth dynamics, is described in the paper.
 
 
 *<i>Note: The kernel presented here was trained on the simplistic model of growth of cubic crystal from vapors as an example of implementation. It can be adapted for any other atomistic growth models for real processes (MBE, MOCVD, etc.). The framework for kernel training available upon request.</i>
@@ -50,7 +50,7 @@ pip install -r requirements.txt
 - `notebooks/cgkernel_demo.ipynb`: MAIN demonstration notebook with examples of all functions
 
 ## Input schema and ranges
-The kernel reads the schema from `cgkernel_config.json`. Canonical feature names and ranges:
+The kernel reads the schema from `cgkernel_config.json`. Canonical feature names ('growth conditions') and ranges:
 
 | Name   | DType        | Scale  | Min        | Max     | Notes |
 |--------|--------------|--------|------------|---------|-------|
@@ -60,7 +60,7 @@ The kernel reads the schema from `cgkernel_config.json`. Canonical feature names
 | T      | float        | linear | 0.0        | 1.0     | 
 | Pd     | float        | log    | 0.000001   | 0.01    | Must be > 0 (log10)
 | M      | int          | linear | 0          | 14      | Treated as integer
-| Nnucl  | categorical  | linear | 0          | 2       | 0..2, see categories below
+| Nnucl  | categorical  | linear | 0          | 2       | 0,1,2
 
 Display labels and category names are also provided via the config and used in printed summaries.
 
