@@ -14,10 +14,9 @@ Repository Contents:
 - Growth Type Classification: Classifies possible types of growth and maps them to growth condition parameters.
 - Multidimensional Mapping: Visualizes stability zones, highlighting parameter regions where specific growth types occur.
 
-This repository presents a demonstration of the kernel on a base simplistic atomistic model, specifically tailored for epitaxial growth of cubic a crystal growth from its own vapor. The underlying model, including 7 key growth parameters like adatom concentration, desorption probability, step transparency and other factors which govern the growth dynamics, is described in the paper.
+This repository demonstrates a kernel trained on a dataset generated using a simplified atomistic model for the epitaxial growth of a cubic Kossel crystal from its own vapor. The model incorporates seven key parameters—such as adatom concentration, desorption probability, and step transparency—that govern growth dynamics, as detailed in the accompanying publication.
 
-
-*<i>Note: The kernel presented here was trained on the simplistic model of growth of cubic crystal from vapors as an example of implementation. It can be adapted for any other atomistic growth models for real processes (MBE, MOCVD, etc.). The framework for kernel training available upon request.</i>
+* <i>Note: This kernel, trained on a simplified growth model, serves as a proof of concept. The framework is adaptable to more complex atomistic models for real-world processes such as MBE and MOCVD. The training framework is available upon request.</i>
 
 ## Installation
 1) Create and activate a virtual environment (recommended)
