@@ -54,13 +54,13 @@ The kernel reads the schema from `cgkernel_config.json`. Canonical feature names
 
 | Name   | DType        | Scale  | Min        | Max     | Notes |
 |--------|--------------|--------|------------|---------|-------|
-| Cs     | float        | log    | 0.001      | 0.5     | Must be > 0 (log10)
-| Pes    | float        | linear | 0.000001   | 1       | 
-| Pbias  | float        | linear | -0.3       | 0.3     | 
-| T      | float        | linear | 0.0        | 1.0     | 
-| Pd     | float        | log    | 0.000001   | 0.01    | Must be > 0 (log10)
-| M      | int          | linear | 0          | 14      | Treated as integer
-| Nnucl  | categorical  | linear | 0          | 2       | 0,1,2
+| Cs     | float        | log    | 0.001      | 0.5     | Surface concentration of adatoms. Must be > 0 (log10) 
+| Pes    | float        | linear | 0.000001   | 1       | Terrace-to-terrace hopping probability
+| Pbias  | float        | linear | -0.3       | 0.3     | Probability related to adatom drift in direction towards or opposite relative to step propagation
+| T      | float        | linear | 0.0        | 1.0     | Step transparency (probability of adatom to incorporate into the surface in the kink position)
+| Pd     | float        | log    | 0.000001   | 0.01    | Desorption probability.  Must be > 0 (log10)
+| M      | int          | linear | 0          | 14      | Number of threading dislocations per area. Treated as integer
+| Nnucl  | categorical  | linear | 0          | 2       | Parameter, describing allowed surface events (0 - kink incorporation only, 1 - 1D-nucleation on steps is also allowed, 2 - 2D nucleation on terraces is also allowed)
 
 Display labels and category names are also provided via the config and used in printed summaries.
 
