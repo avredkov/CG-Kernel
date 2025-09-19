@@ -16,7 +16,7 @@ Repository Contents:
 
 This repository demonstrates a kernel trained on a dataset generated using a simplified atomistic model for the epitaxial growth of a cubic Kossel crystal from its own vapor. The model incorporates seven key parameters—such as adatom concentration, desorption probability, and step transparency—that govern growth dynamics, as detailed in the accompanying publication.
 
-* <i>Note: This kernel, trained on a simplified growth model, serves as a proof of concept. The framework is adaptable to more complex atomistic models for real-world processes such as MBE and MOCVD. The training framework is available upon request.</i>
+<i>*Note: This kernel, trained on a simplified growth model, serves as a proof of concept. The framework is adaptable to more complex atomistic models for real-world processes such as MBE and MOCVD. The training framework is available upon request.</i>
 
 ## Installation
 1) Create and activate a virtual environment (recommended)
