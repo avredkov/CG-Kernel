@@ -64,6 +64,8 @@ The kernel reads the schema from `cgkernel_config.json`. Canonical feature names
 
 Display labels and category names are also provided via the config and used in printed summaries.
 
+*<i>Note that the current kernel was trained using the set of parameters specified above. However, the training framework is designed to accommodate an arbitrary number and variety of input and output parameters, both continuous, integer and categorical and can be adjusted to suit different growth scenarios. This flexibility enables adaptation of the kernel to a wide range of atomistic growth models, including those relevant to real-world processes such as molecular beam epitaxy (MBE), metal-organic chemical vapor deposition (MOCVD), and others.</i>
+
 ### Trained-range validation
 All prediction APIs validate that inputs lie within the configured ranges above. For features listed under `log_columns` (currently `Cs`, `Pd`), values must be strictly positive (log10 applied internally).
 
